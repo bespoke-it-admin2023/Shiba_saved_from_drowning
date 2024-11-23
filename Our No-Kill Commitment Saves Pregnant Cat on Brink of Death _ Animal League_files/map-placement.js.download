@@ -1,0 +1,108 @@
+(function ($) {
+    "use strict";
+	$(document).ready(function(){		
+		var sectionElement=$("#map-container");
+		var mapElement=$("#tribe-geo-map-wrapper");
+		
+		if (sectionElement.length>0 && mapElement.length>0)
+		{
+			sectionElement.append(mapElement);
+			mapElement.show();
+
+		}		
+		
+
+	})
+})(jQuery);
+
+function getEventData(post_id)
+{
+	//alert("post_id="+post_id);
+	jQuery.ajax({
+		type: "GET",
+		data: {
+			post_id:post_id
+		},
+		dataType: "json",
+		url: "/wp-content/themes/Avada-Child-Theme/scripts/map/get-event-data.php",
+		success: function (result) 
+		{
+			//alert("1");
+			jQuery.eventData = jQuery(result); // Convert data to an object
+			var jsonResult = (jQuery.eventData[0]);
+			//console.log(jsonResult);
+			if (jsonResult.image_url)
+			{
+				jQuery(".event-modal .image").append(jsonResult.image_url);
+				jQuery(".event-modal .image").show();
+				jQuery(".event-modal .info").css("max-width", "60%");
+				jQuery(".event-modal .info").css("float", "right");
+			}
+			else
+			{
+				jQuery(".event-modal .image").hide();
+				jQuery(".event-modal .info").css("max-width", "100%");
+				jQuery(".event-modal .info").css("float", "left");
+			}
+			
+			jQuery(".event-modal .event-body").append(jsonResult.body);
+			jQuery(".event-modal .venue").append("<strong>Venue:</strong><br>"+jsonResult.venue);
+			jQuery(".event-modal .address").append(""+jsonResult.address+"<br>"+jsonResult.city+", "+jsonResult.state+" "+jsonResult.zip);
+			if (jsonResult.phone!="" && jsonResult.phone!=null)
+				jQuery(".event-modal .phone").append("<strong></strong>"+jsonResult.phone);
+			if (jsonResult.website!="" && jsonResult.website!=null)
+				jQuery(".event-modal .website").append("<strong></strong>"+jsonResult.website);
+			//jQuery(".event-modal .date").append("<strong></strong>"+jsonResult.startDate+" - "+jsonResult.endDate);
+			for(var i=0;i<jsonResult.startDates.length;i++)
+			{
+			   {
+					jQuery(".event-modal .date").append("<strong></strong>"+jsonResult.startDates[i]+" - "+jsonResult.endDates[i]+"<br>");
+			   }
+			}			
+			jQuery(".event-modal  .loading").hide();
+//			console.log(data); 
+		}
+	});
+}
+
+
+is_map_modal_initialized=false;
+function showCustomPopup(eventId, title, eventLocation, eventLink)
+{
+	jQuery(".event-modal .modal-title").html(title);
+	if (!is_map_modal_initialized)
+	{
+		//is_map_modal_initialized=true;
+		var modalBody=jQuery(".modal-body");
+		var modalBodyText='';//<img src="'+featuredImage+'></img>';
+		//modalBodyText+='<div class="location">'+eventLocation+'</div>';
+		modalBodyText+='<div class="image"></div>';
+		modalBodyText+='<div class="info">';
+			modalBodyText+='<div class="date"></div>';
+			modalBodyText+='<div class="venue"></div>';
+			modalBodyText+='<div class="address"></div>';
+			modalBodyText+='<div class="phone"></div>';
+			modalBodyText+='<div class="website"></div>';
+		modalBodyText+='</div>';
+		modalBodyText+='<div class="event-body"></div>';
+			//modalBodyText+='<div class="learn-more"><strong><a href="'+eventLink+'">LEARN MORE</a></strong></div>';
+		modalBodyText+='<div class="loading"><div class="loader"></div></div>';
+		modalBody.html(modalBodyText);
+		
+		if (jQuery("#learn-more-button").length>0)
+			jQuery("#learn-more-button").remove();
+		// Add learn more button
+		var modalFooter=jQuery(".modal-footer");		
+		var modalFooterText='<a id="learn-more-button" href="'+eventLink+'" class="fusion-button button-default button-medium button default medium" style="margin-right:15px;">Learn More</a>';
+		modalFooter.prepend(modalFooterText);
+	}
+	//alert("eventId="+eventId);
+	getEventData(eventId);
+	
+	//jQuery(".event-modal").show();
+	jQuery(".event-modal").modal();
+}
+
+
+//function getScrollBarWidth(){var a=jQuery("<div>").css({visibility:"hidden",width:100,overflow:"scroll"}).appendTo("body"),b=jQuery("<div>").css({width:"100%"}).appendTo(a).outerWidth();return a.remove(),100-b}jQuery(window).load(function(){var a=parseFloat(getScrollBarWidth());jQuery(".fusion-modal").each(function(){jQuery("body").append(jQuery(this))}),jQuery(".fusion-modal").bind("hidden.bs.modal",function(){jQuery("html").css("overflow",""),0!==a&&(jQuery("body").hasClass("layout-boxed-mode")&&jQuery('#sliders-container .main-flex[data-parallax="1"]').css("margin-left",function(b,c){return parseFloat(c)+a/2+"px"}),jQuery('body, .fusion-is-sticky .fusion-header, .fusion-is-sticky .fusion-secondary-main-menu, #sliders-container .main-flex[data-parallax="1"], #wpadminbar, .fusion-footer.fusion-footer-parallax').css("padding-right",""))}),jQuery(".fusion-modal").bind("show.bs.modal",function(){var b,c='body, .fusion-is-sticky .fusion-header, .fusion-is-sticky .fusion-secondary-main-menu, #sliders-container .main-flex[data-parallax="1"], #wpadminbar, .fusion-footer.fusion-footer-parallax';jQuery("html").css("overflow","visible"),0!==a&&(jQuery("body").hasClass("layout-boxed-mode")&&(c="body, #wpadminbar",jQuery('#sliders-container .main-flex[data-parallax="1"]').css("margin-left",function(b,c){return parseFloat(c)-a/2+"px"})),jQuery(c).css("padding-right",function(b,c){return parseFloat(c)+a+"px"})),b=jQuery(this),setTimeout(function(){b.find(".fusion-youtube").find("iframe").each(function(a){var b;1!==jQuery(this).parents(".fusion-video").data("autoplay")&&"true"!==jQuery(this).parents(".fusion-video").data("autoplay")||(jQuery(this).parents(".fusion-video").data("autoplay","false"),b="playVideo",this.contentWindow.postMessage('{"event":"command","func":"'+b+'","args":""}',"*"))}),b.find(".fusion-vimeo").find("iframe").each(function(a){1!==jQuery(this).parents(".fusion-video").data("autoplay")&&"true"!==jQuery(this).parents(".fusion-video").data("autoplay")||(jQuery(this).parents(".fusion-video").data("autoplay","false"),$f(jQuery(this)[0]).api("play"))}),"function"==typeof jQuery.fn.reinitializeGoogleMap&&b.find(".shortcode-map").each(function(){jQuery(this).reinitializeGoogleMap()}),b.find(".fusion-carousel").length&&"function"==typeof generateCarousel&&generateCarousel(),b.find(".fusion-portfolio").each(function(){jQuery(this).find(".fusion-portfolio-wrapper").isotope()}),b.find(".fusion-gallery").each(function(){jQuery(this).isotope()}),"function"==typeof jQuery.fn.fusionCalcFlipBoxesHeight&&b.find(".flip-box-inner-wrapper").each(function(){jQuery(this).fusionCalcFlipBoxesHeight()}),"function"==typeof jQuery.fn.equalHeights&&b.find(".fusion-fullwidth.fusion-equal-height-columns").each(function(){jQuery(this).find(".fusion-layout-column .fusion-column-wrapper").equalHeights()}),jQuery(".crossfade-images").each(function(){fusionResizeCrossfadeImagesContainer(jQuery(this)),fusionResizeCrossfadeImages(jQuery(this))}),b.find(".fusion-blog-shortcode").each(function(){jQuery(this).find(".fusion-blog-layout-grid").isotope()}),b.find(".fusion-testimonials .reviews").each(function(){jQuery(this).css("height",jQuery(this).children(".active-testimonial").height())}),"function"==typeof calcSelectArrowDimensions&&calcSelectArrowDimensions(),jQuery(window).trigger("resize")},350)}),1==jQuery("#sliders-container .tfs-slider").data("parallax")&&jQuery(".fusion-modal").css("top",jQuery(".header-wrapper").height()),jQuery(".fusion-modal").each(function(){jQuery(this).on("hide.bs.modal",function(){jQuery(this).find("iframe").each(function(a){this.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}',"*")}),jQuery(this).find(".fusion-vimeo iframe").each(function(a){$f(this).api("pause")})})}),jQuery("[data-toggle=modal]").on("click",function(a){a.preventDefault()}),jQuery(".fusion-modal-text-link").click(function(a){a.preventDefault()})}),jQuery(document).ready(function(){jQuery(".fusion-modal").on("shown.bs.modal",function(){jQuery(this).find(".shortcode-map").each(function(){jQuery(this).reinitializeGoogleMap()})})});
+

@@ -1,0 +1,42 @@
+(function () {
+
+  // // If a user submit a form and there are errors, dispaly message.
+  // jQuery('#frm_form_20_container .frm_button_submit.frm_final_submit').click(function(event) {
+  //   var buttonEvent = event;
+  //   setTimeout(function() { 
+  //     if (jQuery(".frm_error").length){
+  //       buttonEvent.preventDefault();
+  //       if(!jQuery('#frm_form_20_container .fusion-alert.alert-danger').length) {
+  //         jQuery('#frm_form_20_container .frm_submit').before('<div class="fusion-alert alert danger alert-danger fusion-alert-center fusion-alert-capitalize alert-shadow"><div class="fusion-alert-content-wrapper"><span class="fusion-alert-content">The form has errors above. Please correct them to continue.</span></div></div>');
+  //       }
+  //     }
+  //   }, 500);
+  // });
+  
+  // Initialization function for all scripts in this scope
+  function kickoff() {
+    sliderBackgroundMod();
+  }
+
+  // Modify template of slider background images to include gradient on slides.
+  // Obviates need for hack to fushion-core slides.php template.
+  function sliderBackgroundMod() {
+    var backgroundImages = jQuery('#sliders-container .background.background-image');
+    backgroundImages.each(function(idx, ele) {
+      var bg = jQuery(ele);
+      var style = bg.attr('style');
+
+      style = style.replace(/background-image: url\(([^)]+)\);/, function (match, imageUrl) {
+        return 'background-image: linear-gradient(transparent 70%,rgba(0,0,0,0.5)), url('+imageUrl+');';
+      });
+
+      bg.attr('style', style);
+    });
+  }
+
+  // Kickoff all scripts in this scope. Note that we're catching exceptions
+  // and outputting to console.
+  try {
+    kickoff();
+  } catch (e) { console.error(e); }
+}());
