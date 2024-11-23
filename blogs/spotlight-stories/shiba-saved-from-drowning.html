@@ -2043,6 +2043,34 @@
     body #accessiblyAppWidgetButton.accessibly-app-widget-button-container span.accessibly-app-icon-logo {
       color: #fff !important
     }
+
+    #image-container {
+    position: relative; /* Set the container position */
+    width: 100%; /* Adjust as needed */
+    height: 50%; /* Show half of the image height */
+    overflow: hidden; /* Hide the overflow which exceeds the height */
+    }
+
+    #image-container img {
+        position: absolute; /* Allow positioning of the image */
+        top: 0; /* Align at the top */
+        left: 50%; /* Center the image horizontally */
+        transform: translateX(-50%); /* Center the image using transform */
+        height: auto; /* Maintain the aspect ratio */
+        width: 100%; /* Full width */
+        min-height: 100%; /* Ensure the image covers the container */
+    }
+
+    #image-container::after {
+        content: ""; /* Required for pseudo-element */
+        position: absolute; /* Cover the image */
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0) 100%); /* Vignette effect */
+        pointer-events: none; /* Ensure clicks go through to the image */
+    }
   </style>
   <script async="" src="./Our No-Kill Commitment Saves Pregnant Cat on Brink of Death _ Animal League_files/js">
   </script>
@@ -8867,9 +8895,9 @@
     </div>
 
 
-    <div id="">
-      <img src="./Our No-Kill Commitment Saves Pregnant Cat on Brink of Death _ Animal League_files/bg-default.jpg" alt="shiba saved from drowning" style="background-image: linear-gradient(transparent 70%, rgba(0, 0, 0, 0.5));"/>
-    </div>
+    <div id="image-container">
+      <img src="./Our No-Kill Commitment Saves Pregnant Cat on Brink of Death _ Animal League_files/bg-default.jpg" alt="Shiba dog saved from drowning" />
+  </div>
 
 
     <div
