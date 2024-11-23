@@ -1,0 +1,1312 @@
+/*
+Theme Name: Avada Child
+Description: Child theme for Avada theme
+Author: ThemeFusion
+Author URI: https://theme-fusion.com
+Template: Avada
+Version: 1.0.0
+Text Domain:  Avadaa
+*/
+
+.optional-label {
+    font-size: 10px;
+    position: relative;
+    top: 2px;
+    color: #888;
+}
+
+.mobile-only {
+  display: none;
+}
+
+.mobile-hidden {
+  display: block;
+}
+
+.stay-in-touch-input {
+    float: left;
+    width: 19%;
+    margin-right: 2%;
+}
+
+#footer_stay-in-touch .fusion-button {
+    width: 19.5%;
+    padding: 7px;
+    font-size: 10px;
+    height: 36px;
+}
+
+#stay-in-touch #submit-btn {
+  width: 15.9%;
+}
+
+#footer_stay-in-touch .stay-in-touch-input {
+  width: 18.7%;
+  float: left;
+  margin-right: 6px;
+}
+
+#footer_stay-in-touch div input, .stay-in-touch-input input {
+  padding: 6px;
+}
+
+.event-wrap {
+  border-bottom: 1px solid #cce0f5;
+  display: inline-block;
+  width: 100%;
+  margin-bottom: 8px;
+}
+
+.event-wrap .fusion-layout-column {
+  margin-bottom: 8px;
+}
+
+@media only screen and (max-width: 800px) {
+  #footer_stay-in-touch .stay-in-touch-input {
+    width: 48%;
+  }
+
+  .mobile-hidden {
+    display: none;
+  }
+
+  .mobile-only {
+    display: block;
+  }
+
+  #footer_stay-in-touch .fusion-button {
+    width: 100px;
+  }
+
+  #stay-in-touch #submit-btn {
+    width: 100px;
+  }
+
+  #stay-in-touch {
+    text-align: center;
+  }
+
+  .stay-in-touch-input {
+    width: 48%;
+    margin-bottom: 10px;
+  }
+
+  #footer_stay-in-touch .fusion-button {
+    margin-top: 14px;
+  }
+
+  .fusion-columns .fusion-column:not(.fusion-column-last) {
+    margin: 0 0 50px;
+  }
+}
+
+@media only screen and (max-width: 991px) {
+  .fusion-footer-widget-area .fusion-columns .fusion-column:not(.fusion-column-last) {
+    margin: 0 0 50px;
+  }
+}
+
+@media only screen and (max-width: 100px) {
+  .fusion-header {
+    height: 86px;
+  }
+}
+
+.fusion-header {
+    max-height: 86px;
+}
+
+.fusion-button.disabled
+{
+  opacity:0.5;
+}
+
+.event-wrap {
+  border-bottom: 1px solid #cce0f5;
+  display: inline-block;
+  width: 100%;
+  margin-bottom: 8px;
+}
+
+.event-wrap .fusion-layout-column {
+  margin-bottom: 8px;
+}
+
+.event-wrap:last-child {
+  border-bottom: none;
+  margin-bottom: 0px;
+}
+
+.event-wrap {
+  border-bottom: 1px solid #cce0f5;
+  display: inline-block;
+  width: 100%;
+}
+
+.logged-in #shelter-portal-public-page {
+  display: none;
+}
+
+.table-bordered td, .table-bordered th {
+    border: 1px solid #dee2e6;
+}
+
+.result-search__item {
+    margin-bottom: 20px;
+}
+
+.shelter-logo-area {
+    text-align: center;
+}
+
+.shelter-logo-area .widget-title {
+    text-align: left;
+}
+
+.fusion-accordian.shelter-portal-accordian .fusion-panel {
+    border-bottom: 0px;
+}
+
+.fusion-accordian.shelter-portal-accordian .fusion-panel .panel-body {
+    padding-left: 9px;
+}
+
+.fusion-accordian.shelter-portal-accordian .panel-group:last-child .fusion-panel {
+    border-bottom: 3px solid #cce0f5;
+}
+
+.shelter-upcoming-events {
+    text-align: center;
+    border-top: 1px solid #cce0f5;
+    padding-top: 20px;
+    clear: both;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.switch input {display:none;}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+.fusion-button.button-15 {
+    background: #e74c3c;
+    border-width: 0px;
+    border-color: #ffffff;
+    color: #fff;
+}
+
+.shelter-partners-breadcrumb .fusion-breadcrumbs span {
+  font-size: 14px;
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.switch-label {
+  top: -10px;
+    position: relative;
+    font-weight: bold;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+.single-tribe_events #content.shelter-event {
+  width: 100%;
+}
+
+.page-template-shelter-partners .fusion-accordian.last-accordian .fusion-panel {
+  border-bottom: 3px solid #cce0f5;
+}
+
+.page-template-shelter-partners .fusion-accordian .fusion-panel {
+  border-bottom: none;
+}
+
+.supplier-list .fusion-one-half:nth-child(odd){
+  width: 48%;
+  margin-right: 2%;
+}
+
+.supplier-list .fusion-one-half:nth-child(even){
+  width: 48%;
+  float: right;
+}
+
+.supplier-link .fa.fa-chevron-right {
+    width: 30px;
+    background: #fff;
+    color: #3380cc;
+    border-radius: 17px;
+    padding: 6px;
+}
+
+.supplier-link {
+    background: #3380cc;
+    color: #fff;
+    text-align: center;
+    padding: 10px 0;
+    width: 300px;
+    max-width: 100%;
+}
+
+
+.shelter_info p {
+  margin: 0px;
+}
+
+/* Custom Login/Register/Password CSS @ https://digwp.com/2010/12/login-register-password-code/ */
+div#register-form {
+    width: 400px; 
+    overflow: hidden; 
+    height: 230px; 
+    position: relative; 
+    background: #f9f9f9 url(images/secure.png) no-repeat 260px 40px; 
+    font-family: Helvetica Neue, Helvetica, Arial !important;
+}
+
+div#register-form input[type="text"] {
+    display: block;
+    border: 1px solid #ccc;
+    margin: 5px 20px;
+    padding: 9px 4px;
+    -moz-border-radius: 4px;
+    -webkit-border-radius:4px;
+    width: 200px;
+    font-family: Helvetica Neue, Helvetica, Arial !important; 
+}
+ 
+div#register-form input[type="text"]:hover {
+    border-color: #b1b1b1;
+}
+ 
+div#register-form input[type="text"]:focus {
+    -moz-box-shadow: 0 0 3px #ccc;
+    -webkit-box-shadow: 0 0 3px #ccc;
+}
+
+div#register-form input[type="submit"]#register {
+
+    border: 0;
+    clear: both;
+    cursor: pointer;
+    height: 31px;
+    overflow: hidden;
+    position: relative;
+    left:295px;
+    top:42px;
+    width:92px;
+}
+div#register-form input[type="submit"]#register:hover {
+    background-position: 0 -32px;
+}
+
+div#register-form span {
+    display: block;
+    margin-bottom: 22px;
+}
+ 
+div#register-form div.title {margin-left:15px}
+div#register-form div.title h1,
+div#register-form div.title span {text-shadow:1px 1px 0px #fff}
+div#register-form div.title h1 {
+    margin:7px 0;
+}
+ 
+.hidden-container
+{
+  display:none;
+}
+
+p.statement {
+    position:absolute;
+    bottom:-2px;
+    left:10px;
+    font-size:.9em;
+    color:#6d6d6d;
+    text-shadow:1px 1px 0px #fff;
+}
+
+/*-- Custom Login/Register/Password Code @ https://digwp.com/2010/12/login-register-password-code/ */
+
+/* tabbed list */
+ul.tabs_login {
+  padding: 0; margin: 20px 0 0 0;
+  position: relative;
+  list-style: none;
+  font-size: 14px;
+  z-index: 1000;
+  float: left;
+  }
+ul.tabs_login li {
+  border: 1px solid #E7E9F6;
+   -webkit-border-top-right-radius: 10px;
+   -khtml-border-radius-topright: 10px; 
+   -moz-border-radius-topright: 10px;
+  border-top-right-radius: 10px;
+   -webkit-border-top-left-radius: 10px;
+   -khtml-border-radius-topleft: 10px;  
+   -moz-border-radius-topleft: 10px;
+  border-top-left-radius: 10px;
+  line-height: 28px; /* = */ height: 28px;
+  padding: 0; margin: 0 5px 0 0;
+  position: relative;
+  background: #fff;
+  overflow: hidden;
+  float: left;
+  }
+ul.tabs_login li a {
+  text-decoration: none;
+  padding: 0 10px;
+  display: block;
+  outline: none;
+  }
+html ul.tabs_login li.active_login {
+  border-left: 1px solid #E7E9F6;
+  border-bottom: 1px solid #fff;
+   -webkit-border-top-right-radius: 10px;
+   -khtml-border-radius-topright: 10px; 
+   -moz-border-radius-topright: 10px;
+  border-top-right-radius: 10px;
+   -webkit-border-top-left-radius: 10px;
+   -khtml-border-radius-topleft: 10px;  
+   -moz-border-radius-topleft: 10px;
+  border-top-left-radius: 10px;
+  background: #fff;
+  color: #333;
+  }
+html body ul.tabs_login li.active_login a { font-weight: bold; }
+.tab_container_login {
+  background: #fff;
+  position: relative;
+  margin: 0 0 20px 0;
+  border: 1px solid #E7E9F6;
+   -webkit-border-bottom-left-radius: 10px;
+   -khtml-border-radius-bottomleft: 10px; 
+   -moz-border-radius-bottomleft: 10px;
+  border-bottom-left-radius: 10px;
+   -webkit-border-bottom-right-radius: 10px;
+   -khtml-border-radius-bottomright: 10px;  
+   -moz-border-radius-bottomright: 10px;
+  border-bottom-right-radius: 10px;
+   -webkit-border-top-right-radius: 10px;
+   -khtml-border-radius-topright: 10px; 
+   -moz-border-radius-topright: 10px;
+  border-top-right-radius: 10px;
+  z-index: 999;
+  float: left;
+  width: 100%;
+  top: -1px;
+  }
+.tab_content_login {
+  padding: 7px 15px 15px 15px;
+  padding-top: 10px;
+  }
+  .tab_content_login ul {
+    padding: 0; margin: 0 0 0 15px;
+    }
+    .tab_content_login li { margin: 5px 0; }
+/* global styles */
+#login-register-password {}
+  #login-register-password h3 {
+    border: 0 none;
+    margin: 10px 0;
+    padding: 0;
+    }
+  #login-register-password p {
+    margin: 0 0 15px 0;
+    padding: 0;
+    }
+/* form elements */
+.wp-user-form {}
+  .username, .password, .login_fields {
+    margin: 7px 0 0 0;
+    overflow: hidden;
+    width: 100%;
+    }
+    .username label, .password label { float: left; clear: none; width: 25%; }
+    .username input, .password input { 
+      font: 12px/1.5 "Lucida Grande", "Lucida Sans Unicode", Verdana, sans-serif;
+      float: left; clear: none; width: 200px; padding: 2px 3px; color: #777;
+      }
+.rememberme { overflow: hidden; width: 100%; margin-bottom: 7px; }
+#rememberme { float: left; clear: none; margin: 4px 4px -4px 0; }
+.user-submit { padding: 5px 10px; margin: 5px 0; }
+.userinfo { float: left; clear: none; width: 75%; margin-bottom: 10px; }
+  .userinfo p { 
+    margin-left: 10px; 
+    }
+.usericon { float: left; clear: none; width: 15%; margin: 0 0 10px 22px; }
+  .usericon img {
+    border: 1px solid #F4950E;
+    padding: 1px;
+    }
+.fusion-button.disabled {
+  opacity: 0.5;
+}
+
+/* Custom Login/Register/Password CSS @ https://digwp.com/2010/12/login-register-password-code/ */
+
+div#register-form {
+  width: 400px;
+  overflow: hidden;
+  height: 230px;
+  position: relative;
+  background: #f9f9f9 url(images/secure.png) no-repeat 260px 40px;
+  font-family: Helvetica Neue, Helvetica, Arial !important;
+}
+
+div#register-form input[type="text"] {
+  display: block;
+  border: 1px solid #ccc;
+  margin: 5px 20px;
+  padding: 9px 4px;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  width: 200px;
+  font-family: Helvetica Neue, Helvetica, Arial !important;
+}
+
+div#register-form input[type="text"]:hover {
+  border-color: #b1b1b1;
+}
+
+div#register-form input[type="text"]:focus {
+  -moz-box-shadow: 0 0 3px #ccc;
+  -webkit-box-shadow: 0 0 3px #ccc;
+}
+
+div#register-form input[type="submit"]#register {
+  border: 0;
+  clear: both;
+  cursor: pointer;
+  height: 31px;
+  overflow: hidden;
+  position: relative;
+  left: 295px;
+  top: 42px;
+  width: 92px;
+}
+
+div#register-form input[type="submit"]#register:hover {
+  background-position: 0 -32px;
+}
+
+div#register-form span {
+  display: block;
+  margin-bottom: 22px;
+}
+
+div#register-form div.title {
+  margin-left: 15px
+}
+
+div#register-form div.title h1,
+div#register-form div.title span {
+  text-shadow: 1px 1px 0px #fff
+}
+
+div#register-form div.title h1 {
+  margin: 7px 0;
+}
+
+.hidden-container {
+  display: none;
+}
+
+p.statement {
+  position: absolute;
+  bottom: -2px;
+  left: 10px;
+  font-size: .9em;
+  color: #6d6d6d;
+  text-shadow: 1px 1px 0px #fff;
+}
+
+/*-- Custom Login/Register/Password Code @ https://digwp.com/2010/12/login-register-password-code/ */
+
+/* tabbed list */
+
+ul.tabs_login {
+  padding: 0;
+  margin: 20px 0 0 0;
+  position: relative;
+  list-style: none;
+  font-size: 14px;
+  z-index: 1000;
+  float: left;
+}
+
+ul.tabs_login li {
+  border: 1px solid #E7E9F6;
+  -webkit-border-top-right-radius: 10px;
+  -khtml-border-radius-topright: 10px;
+  -moz-border-radius-topright: 10px;
+  border-top-right-radius: 10px;
+  -webkit-border-top-left-radius: 10px;
+  -khtml-border-radius-topleft: 10px;
+  -moz-border-radius-topleft: 10px;
+  border-top-left-radius: 10px;
+  line-height: 28px;
+  /* = */
+  height: 28px;
+  padding: 0;
+  margin: 0 5px 0 0;
+  position: relative;
+  background: #fff;
+  overflow: hidden;
+  float: left;
+}
+
+ul.tabs_login li a {
+  text-decoration: none;
+  padding: 0 10px;
+  display: block;
+  outline: none;
+}
+
+html ul.tabs_login li.active_login {
+  border-left: 1px solid #E7E9F6;
+  border-bottom: 1px solid #fff;
+  -webkit-border-top-right-radius: 10px;
+  -khtml-border-radius-topright: 10px;
+  -moz-border-radius-topright: 10px;
+  border-top-right-radius: 10px;
+  -webkit-border-top-left-radius: 10px;
+  -khtml-border-radius-topleft: 10px;
+  -moz-border-radius-topleft: 10px;
+  border-top-left-radius: 10px;
+  background: #fff;
+  color: #333;
+}
+
+html body ul.tabs_login li.active_login a {
+  font-weight: bold;
+}
+
+.tab_container_login {
+  background: #fff;
+  position: relative;
+  margin: 0 0 20px 0;
+  border: 1px solid #E7E9F6;
+  -webkit-border-bottom-left-radius: 10px;
+  -khtml-border-radius-bottomleft: 10px;
+  -moz-border-radius-bottomleft: 10px;
+  border-bottom-left-radius: 10px;
+  -webkit-border-bottom-right-radius: 10px;
+  -khtml-border-radius-bottomright: 10px;
+  -moz-border-radius-bottomright: 10px;
+  border-bottom-right-radius: 10px;
+  -webkit-border-top-right-radius: 10px;
+  -khtml-border-radius-topright: 10px;
+  -moz-border-radius-topright: 10px;
+  border-top-right-radius: 10px;
+  z-index: 999;
+  float: left;
+  width: 100%;
+  top: -1px;
+}
+
+.tab_content_login {
+  padding: 7px 15px 15px 15px;
+  padding-top: 10px;
+}
+
+.tab_content_login ul {
+  padding: 0;
+  margin: 0 0 0 15px;
+}
+
+.tab_content_login li {
+  margin: 5px 0;
+}
+
+/* global styles */
+
+#login-register-password {}
+
+#login-register-password h3 {
+  border: 0 none;
+  margin: 10px 0;
+  padding: 0;
+}
+
+#login-register-password p {
+  margin: 0 0 15px 0;
+  padding: 0;
+}
+
+/* form elements */
+
+.wp-user-form {}
+
+.username,
+.password,
+.login_fields {
+  margin: 7px 0 0 0;
+  overflow: hidden;
+  width: 100%;
+}
+
+.username label,
+.password label {
+  float: left;
+  clear: none;
+  width: 25%;
+}
+
+.username input,
+.password input {
+  font: 12px/1.5 "Lucida Grande", "Lucida Sans Unicode", Verdana, sans-serif;
+  float: left;
+  clear: none;
+  width: 200px;
+  padding: 2px 3px;
+  color: #777;
+}
+
+.rememberme {
+  overflow: hidden;
+  width: 100%;
+  margin-bottom: 7px;
+}
+
+#rememberme {
+  float: left;
+  clear: none;
+  margin: 4px 4px -4px 0;
+}
+
+.user-submit {
+  padding: 5px 10px;
+  margin: 5px 0;
+}
+
+.userinfo {
+  float: left;
+  clear: none;
+  width: 75%;
+  margin-bottom: 10px;
+}
+
+.userinfo p {
+  margin-left: 10px;
+}
+
+.usericon {
+  float: left;
+  clear: none;
+  width: 15%;
+  margin: 0 0 10px 22px;
+}
+
+.usericon img {
+  border: 1px solid #F4950E;
+  padding: 1px;
+}
+
+form#ajax_login{
+    display: none;
+    background-color: #FFFFFF;
+    position: fixed;
+    top: 200px;
+    padding: 40px 25px 25px 25px;
+    width: 350px;
+    z-index: 333333;
+    left: 50%;
+    margin-left: -200px;  
+}
+
+div#login_help_form{
+    display: none;
+    background-color: #FFFFFF;
+    position: fixed;
+    top: 40px;
+    padding: 40px 25px 25px 25px;
+    width: 350px;
+    z-index: 333333;
+    left: 50%;
+    margin-left: -200px;  
+}
+
+
+
+form#form_login{
+    display: none;
+    background-color: #FFFFFF;
+    position: fixed;
+    top: 200px;
+    padding: 40px 25px 25px 25px;
+    width: 350px;
+    z-index: 333333;
+    left: 50%;
+    margin-left: -200px;  
+}
+
+form#login p.status{
+    display: none;
+}
+
+form#ajax_register{
+    display: none;
+    background-color: #FFFFFF;
+    position: fixed;
+    top: 100px;
+    padding: 40px 25px 25px 25px;
+    width: 350px;
+    z-index: 333333;
+    left: 50%;
+    margin-left: -200px;  
+}
+
+#login_overlay, .login_overlay{
+    height: 100%;
+    width: 100%;
+    background-color: #000;
+    opacity: 0.5;
+  top:0; left:0;
+    position: fixed;
+    z-index: 1998;
+  
+    height: 100vw;
+    width: 100vw;
+    background-color: #000;
+    opacity: 0.5;
+    top: 0;
+    left: 0;
+    position: fixed;
+    z-index: 30000; 
+}
+
+div#loading-on-checkout{
+    display: none;
+    background-color: #FFFFFF;
+    position: fixed;
+    top: 240px;
+    padding: 40px 25px 25px 25px;
+    width: 350px;
+    z-index: 222999;
+    left: 50%;
+    margin-left: -200px;  
+  border:1px solid #000;
+}
+
+/* END OF floating login widget */
+
+.page-template-adopt-profile  a.fusion-social-network-icon:hover
+{
+  text-decoration:none !important;
+}
+
+
+.stackla-widget-mask {  display: none !important;}
+
+.mobile-event-meta
+{
+  display:none;
+}
+
+/* https://theeventscalendar.com/support/forums/topic/map-shortcode-display/ */
+#tribe-events.tribe-events-shortcode.view-map {
+display: none;
+}
+
+#fundraising-leaderboard
+{
+  border:1px solid #d2d2d2;
+  height:120px;
+  overflow:hidden;
+  padding:10px;
+}
+
+#fundraising-leaderboard ul
+{
+  list-style-type:none;
+  -webkit-padding-start: 0px;
+  padding:10px;
+}
+#fundraising-leaderboard .name
+{
+  float:left;
+  font-size:12px;
+  font-weight:bold;
+}
+#fundraising-leaderboard .amount
+{
+  float:right;
+  font-size:12px;
+}
+
+#fundraising-leaderboard li {
+
+    width: 100%;
+    clear: both;
+  height:25px;
+}
+
+.event-modal .modal-lg
+{
+  width:700px;
+  max-width:100%;
+}
+
+.event-modal .loading
+{
+  position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    background: #fff;
+    z-index: 900;
+    min-height:200px;
+}
+
+.event-modal .loading .loader {
+    border: 16px solid #f3f3f3; /* Light grey */
+    border-top: 16px solid #3498db; /* Blue */
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    animation: spin 2s linear infinite;
+    margin: 0 auto;
+    top: 20px;
+    position: relative; 
+
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.event-modal .fusion-layout-column
+{
+  margin-bottom:0px !important;
+}
+.event-modal .image
+{
+  width:30%;
+  float:left;
+}
+
+.event-modal .custom-paragraph-intro p {
+    margin: 0px;
+}
+
+.event-modal .event-body {
+  border-top:1px solid #ebebeb;
+    width: 100%;
+    clear: both;
+    padding-top: 15px;  
+}
+
+.event-modal img
+{
+  max-width:100%;
+}
+
+.event-modal .info
+{
+
+  max-width:60%;
+  float:right;
+  padding-bottom:20px;
+}
+
+.event-modal .date
+{
+  font-weight:600;
+  padding-bottom:20px;
+}
+#tribe-geo-map-wrapper
+{
+  display:none;
+}
+
+#tribe-geo-map {
+    height: 450px !important;
+} 
+
+@media only screen and (max-width: 480px)
+{
+  .event-modal .image
+  {
+    width:100%;
+  }
+    
+  .event-modal .event-body {
+    width: 100%;
+  }
+  .event-modal .info
+  {
+    max-width:100%;
+    
+    margin-bottom:20px;
+  } 
+}
+  
+@media only screen and (max-width: 800px)
+{
+  .single-tribe_events .sidebar {
+    display:none;
+  }
+  .mobile-event-meta
+  {
+    display:block;
+  }
+    .page-template-shelter-partners-dashboard #main .fusion-layout-column img, .supplier-link {
+        width: 100%;
+    }
+}
+
+.custom-title-separator.fusion-title {
+    height: auto !important;
+}
+.fusion-toggle-heading {
+    padding-left: 9px;
+=======
+form#ajax_login {
+  display: none;
+  background-color: #FFFFFF;
+  position: fixed;
+  top: 200px;
+  padding: 40px 25px 25px 25px;
+  width: 350px;
+  z-index: 333333;
+  left: 50%;
+  margin-left: -200px;
+}
+
+div#login_help_form {
+  display: none;
+  background-color: #FFFFFF;
+  position: fixed;
+  top: 40px;
+  padding: 40px 25px 25px 25px;
+  width: 350px;
+  z-index: 333333;
+  left: 50%;
+  margin-left: -200px;
+}
+
+form#form_login {
+  display: none;
+  background-color: #FFFFFF;
+  position: fixed;
+  top: 200px;
+  padding: 40px 25px 25px 25px;
+  width: 350px;
+  z-index: 333333;
+  left: 50%;
+  margin-left: -200px;
+}
+
+form#login p.status {
+  display: none;
+}
+
+form#ajax_register {
+  display: none;
+  background-color: #FFFFFF;
+  position: fixed;
+  top: 100px;
+  padding: 40px 25px 25px 25px;
+  width: 350px;
+  z-index: 333333;
+  left: 50%;
+  margin-left: -200px;
+}
+
+#login_overlay,
+.login_overlay {
+  height: 100%;
+  width: 100%;
+  background-color: #000;
+  opacity: 0.5;
+  top: 0;
+  left: 0;
+  position: fixed;
+  z-index: 1998;
+  height: 100vw;
+  width: 100vw;
+  background-color: #000;
+  opacity: 0.5;
+  top: 0;
+  left: 0;
+  position: fixed;
+  z-index: 30000;
+}
+
+div#loading-on-checkout {
+  display: none;
+  background-color: #FFFFFF;
+  position: fixed;
+  top: 240px;
+  padding: 40px 25px 25px 25px;
+  width: 350px;
+  z-index: 222999;
+  left: 50%;
+  margin-left: -200px;
+  border: 1px solid #000;
+}
+
+/* END OF floating login widget */
+
+.page-template-adopt-profile a.fusion-social-network-icon:hover {
+  text-decoration: none !important;
+}
+
+.stackla-widget-mask {
+  display: none !important;
+}
+
+.mobile-event-meta {
+  display: none;
+}
+
+/* https://theeventscalendar.com/support/forums/topic/map-shortcode-display/ */
+
+#tribe-events.tribe-events-shortcode.view-map {
+  display: none;
+}
+
+#fundraising-leaderboard {
+  border: 1px solid #d2d2d2;
+  height: 120px;
+  overflow: hidden;
+  padding: 10px;
+}
+
+#fundraising-leaderboard ul {
+  list-style-type: none;
+  -webkit-padding-start: 0px;
+  padding: 10px;
+}
+
+#fundraising-leaderboard .name {
+  float: left;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+#fundraising-leaderboard .amount {
+  float: right;
+  font-size: 12px;
+}
+
+#fundraising-leaderboard li {
+  width: 100%;
+  clear: both;
+  height: 25px;
+}
+
+.event-modal .modal-lg {
+  width: 700px;
+  max-width: 100%;
+}
+
+.event-modal .loading {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  background: #fff;
+  z-index: 900;
+  min-height: 200px;
+}
+
+.event-modal .loading .loader {
+  border: 16px solid #f3f3f3;
+  /* Light grey */
+  border-top: 16px solid #3498db;
+  /* Blue */
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  animation: spin 2s linear infinite;
+  margin: 0 auto;
+  top: 20px;
+  position: relative;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.event-modal .fusion-layout-column {
+  margin-bottom: 0px !important;
+}
+
+.event-modal .image {
+  width: 30%;
+  float: left;
+}
+
+.event-modal .custom-paragraph-intro p {
+  margin: 0px;
+}
+
+.event-modal .event-body {
+  border-top: 1px solid #ebebeb;
+  width: 100%;
+  clear: both;
+  padding-top: 15px;
+}
+
+.event-modal img {
+  max-width: 100%;
+}
+
+.event-modal .info {
+  max-width: 60%;
+  float: right;
+  padding-bottom: 20px;
+}
+
+.event-modal .date {
+  font-weight: 600;
+  padding-bottom: 20px;
+}
+
+#tribe-geo-map-wrapper {
+  display: none;
+}
+
+#tribe-geo-map {
+  height: 450px !important;
+}
+
+@media only screen and (max-width: 480px) {
+  .event-modal .image {
+    width: 100%;
+  }
+  .event-modal .event-body {
+    width: 100%;
+  }
+  .event-modal .info {
+    max-width: 100%;
+    margin-bottom: 20px;
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  .single-tribe_events .sidebar {
+    display: none;
+  }
+  .mobile-event-meta {
+    display: block;
+  }
+}
+
+.custom-title-separator.fusion-title {
+  height: auto !important;
+}
+
+.fusion-toggle-heading {
+  padding-left: 9px;
+}
+
+/*
+|--------------------------------------------------------------------------
+| Events Images with Lower Thirds TW #12193670
+|--------------------------------------------------------------------------
+*/
+
+@media only screen and (max-width: 500px) {
+  .single-tribe_events.tribe-mobile .tribe_events .fusion-events-single-title-content {
+    padding: 2px 5px;
+  }
+  .single-tribe_events.tribe-mobile .fusion-events-featured-image .tribe-events-single-event-title {
+    font-size: 18px !important;
+  }
+  .single-tribe_events.tribe-mobile .fusion-events-featured-image .tribe-events-schedule h3 {
+    font-size: 15px !important;
+  }
+}
+
+@media only screen and (max-width: 320px) {
+  .single-tribe_events.tribe-mobile .tribe_events .fusion-events-single-title-content {
+    padding: 2px 5px;
+  }
+  .single-tribe_events.tribe-mobile .fusion-events-featured-image .tribe-events-single-event-title {
+    line-height: 1.2 !important;
+    font-size: 13px !important;
+  }
+  .single-tribe_events.tribe-mobile .fusion-events-featured-image .tribe-events-schedule h3 {
+    font-size: 12px !important;
+  }
+}
+
+/*
+|--------------------------------------------------------------------------
+| Blog Styles
+|--------------------------------------------------------------------------
+*/
+
+/* Sidebar Search */
+
+.search-table {
+  display: flex;
+}
+
+.searchsubmit {
+  background: #000;
+  color: #fff;
+  font-size: 1em;
+  padding: 5px;
+  margin-left: -1px;
+  margin-top: -1px;
+}

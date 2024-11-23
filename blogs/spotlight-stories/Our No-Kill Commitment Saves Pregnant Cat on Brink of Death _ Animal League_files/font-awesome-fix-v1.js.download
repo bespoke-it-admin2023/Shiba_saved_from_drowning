@@ -1,0 +1,14 @@
+// Fixes issue with font-awesome icons not loading correctly. The latest version of font-awesome does not allow you to add the icons via css content property. The older versions do and so we need to load an older version in order for the icons to show up correctly.
+
+(function($) {
+  $(function() {
+    $('head').append(
+      '<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">'
+    );
+
+    // Fix magnifying glass icon in search buttons
+    const $searchButton = $('.searchsubmit');
+    $searchButton.css('font-family', 'FontAwesome');
+    $('.searchSubmit').val('&#xf002;');
+  });
+})(jQuery);

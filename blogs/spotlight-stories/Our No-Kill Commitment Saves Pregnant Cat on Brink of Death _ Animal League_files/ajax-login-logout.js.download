@@ -1,0 +1,841 @@
+//http://natko.com/wordpress-ajax-login-without-a-plugin-the-right-way/
+
+var $LUMINATE_API_KEY="gupr5sufA5ehehacRAtHaSpuDRUphUsw";
+var $LUMINATE_API_URL="https://secure3.convio.net/nsala/site/";
+
+// USAGE:
+// abbrState('ny', 'name');
+// --> 'New York'
+// abbrState('New York', 'abbr');
+// --> 'NY'
+//https://gist.github.com/CalebGrove/c285a9510948b633aa47
+function abbrState(input, to){
+    
+    var states = [
+        ['Arizona', 'AZ'],
+        ['Alabama', 'AL'],
+        ['Alaska', 'AK'],
+        ['Arizona', 'AZ'],
+        ['Arkansas', 'AR'],
+        ['California', 'CA'],
+        ['Colorado', 'CO'],
+        ['Connecticut', 'CT'],
+        ['Delaware', 'DE'],
+        ['Florida', 'FL'],
+        ['Georgia', 'GA'],
+        ['Hawaii', 'HI'],
+        ['Idaho', 'ID'],
+        ['Illinois', 'IL'],
+        ['Indiana', 'IN'],
+        ['Iowa', 'IA'],
+        ['Kansas', 'KS'],
+        ['Kentucky', 'KY'],
+        ['Kentucky', 'KY'],
+        ['Louisiana', 'LA'],
+        ['Maine', 'ME'],
+        ['Maryland', 'MD'],
+        ['Massachusetts', 'MA'],
+        ['Michigan', 'MI'],
+        ['Minnesota', 'MN'],
+        ['Mississippi', 'MS'],
+        ['Missouri', 'MO'],
+        ['Montana', 'MT'],
+        ['Nebraska', 'NE'],
+        ['Nevada', 'NV'],
+        ['New Hampshire', 'NH'],
+        ['New Jersey', 'NJ'],
+        ['New Mexico', 'NM'],
+        ['New York', 'NY'],
+        ['North Carolina', 'NC'],
+        ['North Dakota', 'ND'],
+        ['Ohio', 'OH'],
+        ['Oklahoma', 'OK'],
+        ['Oregon', 'OR'],
+        ['Pennsylvania', 'PA'],
+        ['Rhode Island', 'RI'],
+        ['South Carolina', 'SC'],
+        ['South Dakota', 'SD'],
+        ['Tennessee', 'TN'],
+        ['Texas', 'TX'],
+        ['Utah', 'UT'],
+        ['Vermont', 'VT'],
+        ['Virginia', 'VA'],
+        ['Washington', 'WA'],
+        ['West Virginia', 'WV'],
+        ['Wisconsin', 'WI'],
+        ['Wyoming', 'WY'],
+    ];
+
+    if (to == 'abbr'){
+        input = input.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+        for(i = 0; i < states.length; i++){
+            if(states[i][0] == input){
+                return(states[i][1]);
+            }
+        }    
+    } else if (to == 'name'){
+        input = input.toUpperCase();
+        for(i = 0; i < states.length; i++){
+            if(states[i][1] == input){
+                return(states[i][0]);
+            }
+        }    
+    }
+}
+
+function getLuminateToken()
+{
+	return getCookie("luminate_token");
+}
+
+function hasSpecialCharacters(myString) 
+{
+	if(/^[a-zA-Z0-9- ]*$/.test(myString) == false) 
+	{
+		return true;
+	}
+	return false;
+}
+
+function isEmail(email) 
+{
+	var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+	return regex.test(email);
+}
+
+function getLuminatConsId()
+{
+	return getCookie("luminate_cons_id");
+}	
+
+function setLuminateToken(cvalue) 
+{
+	var exdays=10;
+	var d = new Date();
+	d.setTime(d.getTime() + (exdays*24*60*60*1000));
+	var expires = "expires="+ d.toUTCString();
+	document.cookie = "luminate_token" + "=" + cvalue + ";" + expires + ";path=/";
+}
+
+function setLuminateConsId(cvalue) 
+{
+	var exdays=10;
+	var d = new Date();
+	d.setTime(d.getTime() + (exdays*24*60*60*1000));
+	var expires = "expires="+ d.toUTCString();
+	document.cookie = "luminate_cons_id" + "=" + cvalue + ";" + expires + ";path=/";
+}	
+
+function listUserFields()
+{
+	jQuery.ajax({
+		type: 'POST',
+		contentType: 'application/x-www-form-urlencoded',
+		dataType: 'json',
+		xhrFields: { withCredentials: true }, 
+		url: ajax_login_object.luminateurl+"CRConsAPI",
+		data: { 
+			'method': 'listUserFields', 
+			'api_key': ajax_login_object.luminateAPIKey,
+			'v': '1.0', 
+			'response_format': 'json'
+		},
+		success: function(data){
+			alert(JSON.stringify(data));
+			console.log(JSON.stringify(data));
+			
+		},
+		error : function(data){
+			alert(data.responseJSON["errorResponse"]["message"]);
+
+		},		
+		statusCode: {
+		   403: function() { 
+				//alert(JSON.stringify(data));
+		   },
+		   200: function(data) {
+
+		   }
+		   //other codes. read the docs for more details
+		}			
+		
+	});
+}
+
+function getCookie(cname) {
+	var name = cname + "=";
+	var decodedCookie = decodeURIComponent(document.cookie);
+	var ca = decodedCookie.split(';');
+	for(var i = 0; i <ca.length; i++) {
+		var c = ca[i];
+		while (c.charAt(0) == ' ') {
+			c = c.substring(1);
+		}
+		if (c.indexOf(name) == 0) {
+			return c.substring(name.length, c.length);
+		}
+	}
+	return "";
+}
+
+function getUser(is_debug, callback, token)
+{
+
+	jQuery.ajax({
+		type: 'POST',
+		contentType: 'application/x-www-form-urlencoded',
+		dataType: 'json',
+		xhrFields: { withCredentials: true }, 
+		url: ajax_login_object.luminateurl+"CRConsAPI",
+		data: { 
+			'method': 'getUser', 
+			'api_key': ajax_login_object.luminateAPIKey,
+			'v': '1.0', 
+			'response_format': 'json',
+			'auth':token
+		},
+		success: function(data){
+			console.log(data);
+			if (is_debug)
+				alert(JSON.stringify(data));
+			if (callback)
+				callback(data);
+		},
+		error : function(data){
+			if (is_debug)
+				alert(data.responseJSON["errorResponse"]["message"]);
+			if (callback)
+				callback(data);
+
+		},		
+		statusCode: {
+		   403: function() { 
+				//alert(JSON.stringify(data));
+		   },
+		   200: function(data) {
+
+		   }
+		   //other codes. read the docs for more details
+		}			
+		
+	});
+}
+
+function getUserSR()
+{
+
+	jQuery.ajax({
+		type: 'POST',
+		contentType: 'application/x-www-form-urlencoded',
+		dataType: 'json',
+		xhrFields: { withCredentials: true }, 
+		url: ajax_login_object.getuserurl,
+		data: { 
+		},
+		success: function(data){
+			console.log(data);
+			alert(JSON.stringify(data));
+		},
+		error : function(data){
+			//alert(data.responseJSON["errorResponse"]["message"]);
+
+		},		
+		statusCode: {
+		   403: function() { 
+				//alert(JSON.stringify(data));
+		   },
+		   200: function(data) {
+
+		   }
+		   //other codes. read the docs for more details
+		}			
+		
+	});
+}
+
+function logInteraction(interaction_subject, interaction_body)
+{
+	var cons_id=getLuminatConsId();
+	jQuery.ajax({
+		type: 'POST',
+		contentType: 'application/x-www-form-urlencoded',
+		dataType: 'json',
+		xhrFields: { withCredentials: true }, 
+		url: ajax_login_object.luminateurl+"CRConsAPI",
+		data: { 
+			'method': 'logInteraction', 
+			'api_key': ajax_login_object.luminateAPIKey,
+			'v': '1.0', 
+			'response_format': 'json',
+			'cons_id':cons_id,
+			'interaction_subject':interaction_subject,
+			'interaction_body':interaction_body
+			
+		},
+		success: function(data){
+			console.log(data);
+			alert(interaction_subject + " "+ interaction_body + JSON.stringify(data));
+		},
+		error : function(data){
+			alert(data.responseJSON["errorResponse"]["message"]);
+
+		},		
+		statusCode: {
+		   403: function() { 
+				//alert(JSON.stringify(data));
+		   },
+		   200: function(data) {
+
+		   }
+		   //other codes. read the docs for more details
+		}			
+		
+	});
+}
+
+function loginTest(is_debug, callback)
+{
+	
+	jQuery.ajax({
+		type: 'GET',
+		contentType: 'application/x-www-form-urlencoded',
+		dataType: 'json',
+		xhrFields: { withCredentials: true }, 
+		url: ajax_login_object.luminateurl+"CRConsAPI",
+		data: { 
+			'method': 'loginTest', 
+			'api_key': ajax_login_object.luminateAPIKey,
+			'v': '1.0', 
+			'response_format': 'json'
+		},
+		success: function(data){
+			console.log(data);
+			if (is_debug)
+				alert(JSON.stringify(data));
+			if (callback)
+				callback(data);
+			return data;
+		},
+		error : function(data){
+			if (is_debug)
+				alert(data.responseJSON["errorResponse"]["message"]);
+			if (callback)
+				callback(data);
+			return data;
+		},		
+		statusCode: {
+		   403: function() { 
+				//alert(JSON.stringify(data));
+		   },
+		   200: function(data) {
+			if (callback)
+				callback(data);
+			return data;
+
+		   }
+		   //other codes. read the docs for more details
+		}			
+		
+	});
+}
+
+function logout()
+{
+
+	jQuery.ajax({
+		type: 'POST',
+		contentType: 'application/x-www-form-urlencoded',
+		dataType: 'json',
+		xhrFields: { withCredentials: true }, 
+		url: ajax_login_object.luminateurl+"CRConsAPI",
+		data: { 
+			'method': 'logout', 
+			'api_key': ajax_login_object.luminateAPIKey,
+			'v': '1.0', 
+			'response_format': 'json'
+		},
+		success: function(data){
+			console.log(data["loginResponse"]["message"]);
+			//alert(JSON.stringify(data));
+			setLuminateToken("");
+			setLuminateConsId("");
+		},
+		error : function(data){
+			console.log(data["errorResponse"]["message"]);
+			//alert(JSON.stringify(data));
+		}			
+	});
+
+	jQuery.ajax({
+		type: 'POST',
+		url: ajax_logout_object.ajaxurl,
+		data: {
+			'action': 'custom_ajax_logout', //calls custom_ajax_logout_func
+			'security': ajax_logout_object.ajaxlogoutnonce
+		},
+		success: function(r){
+			// When the response comes back
+			window.location = ajax_logout_object.redirecturl;
+		}
+	});	
+}
+
+
+function getLoginUrl(is_debug, callback)
+{
+
+	jQuery.ajax({
+		type: 'GET',
+		contentType: 'application/x-www-form-urlencoded',
+		dataType: 'json',
+		xhrFields: { withCredentials: true }, 
+		url: ajax_login_object.luminateurl+"CRConsAPI",
+		data: { 
+			'method': 'getLoginUrl', 
+			'api_key': ajax_login_object.luminateAPIKey,
+			'v': '1.0', 
+			'response_format': 'json'
+		},
+		success: function(data){
+			console.log(data);
+			if (is_debug)
+				alert("getLoginUrl success" + JSON.stringify(data));
+			if (callback)
+				callback(data);
+		},
+		error : function(data){
+
+			if (is_debug)
+				alert("getLoginUrl error" + data.responseJSON["errorResponse"]["message"]);
+			if (callback)
+				callback(data);
+
+		},		
+		statusCode: {
+		   403: function() { 
+			   if (is_debug)
+					alert("getLoginUrl statusCode 403" + JSON.stringify(data));
+				//alert(JSON.stringify(data));
+				//callback(data);
+		   },
+		   200: function(data) {
+			   if (is_debug)
+					alert("getLoginUrl statusCode 200" + JSON.stringify(data));
+				//callback(data);
+		   }
+		   //other codes. read the docs for more details
+		}			
+		
+	});
+}
+
+function createUser(username, myPassword, first_name, last_name, email, after_login_url)
+{
+		jQuery.ajax({
+		type: 'POST',
+		contentType: 'application/x-www-form-urlencoded',
+		dataType: 'json',
+		xhrFields: { withCredentials: true }, 
+		url: ajax_register_object.luminateurl+"CRConsAPI",
+		data: { 
+			'method': 'create', 
+			'api_key': ajax_register_object.luminateAPIKey, 
+			'v': '1.0', 
+			'response_format': 'json',
+			'user_name' : username,
+			'name.first' : first_name,
+			'name.last' : last_name,
+			'user_password' : myPassword,
+			'primary_email': email
+		},
+		success: function(data){
+			jQuery('form#ajax_register p.status').text(JSON.stringify(data));
+			if (data.hasOwnProperty("createConsResponse"))
+			{
+				var cons_id=data.createConsResponse.cons_id;
+				luminateLogin(username, myPassword, false, after_login_url);
+/*				loginToWPAfterLuminateLogin(cons_id, token, username, myPassword,
+					remember_me);
+*/
+			}
+			else if (data.hasOwnProperty("errorResponse"))
+			{
+				jQuery('form#ajax_register p.status').text(data["errorResponse"].message);
+			}
+		},
+		error : function(data){
+			console.log(data);
+			//alert(data.responseJSON["errorResponse"]["message"]);
+			jQuery('form#ajax_register p.status').text(data.responseJSON["errorResponse"]["message"]);
+		},				
+	});
+}
+
+function luminateLogin(username, myPassword, remember_me, after_login_url)
+{
+	jQuery.ajax({
+		type: 'POST',
+		contentType: 'application/x-www-form-urlencoded',
+		dataType: 'json',
+		xhrFields: { withCredentials: true }, 
+		url: ajax_login_object.luminateurl+"CRConsAPI",
+		data: { 
+			'method': 'login', 
+			'api_key': ajax_login_object.luminateAPIKey, 
+			'v': '1.0', 
+			'response_format': 'json',
+			'user_name' : username,
+			'password' : myPassword,
+			'remember_me' : remember_me,
+		},
+		success: function(data){
+			jQuery('form#ajax_login p.status').text(JSON.stringify(data));
+			if (data.hasOwnProperty("loginResponse"))
+			{
+				var token=data.loginResponse.token;
+				var cons_id=data.loginResponse.cons_id;
+				loginToWPAfterLuminateLogin(cons_id, token, username, myPassword, "",  
+					remember_me, null, after_login_url);
+
+			}
+			else if (data.hasOwnProperty("errorResponse"))
+			{
+				jQuery('form#ajax_login p.status').text(data["errorResponse"].message);
+			}
+		},
+		error : function(data){
+			console.log(data);
+			//alert(data.responseJSON["errorResponse"]["message"]);
+			jQuery('form#ajax_login p.status').text(data.responseJSON["errorResponse"]["message"]);
+		},				
+	});
+}
+		
+function loginToWPAfterLuminateLoginOLD(cons_id, token, username, myPassword, email, remember_me, callback, redirectUrl)
+{
+	jQuery.ajax({
+		type: 'GET',
+		contentType: 'application/x-www-form-urlencoded',
+		dataType: 'json',
+		xhrFields: { withCredentials: true }, 
+		url: ajax_login_object.luminateurl+"CRConsAPI",
+		data: { 
+			'method': 'loginTest', 
+			'api_key': ajax_login_object.luminateAPIKey,
+			'v': '1.0', 
+			'response_format': 'json'
+		},
+		success: function(data){
+			console.log(data);
+			var login_test_url=data.loginResponse.login_test_url;
+			
+			jQuery.ajax({
+				url: ajax_login_object.ajaxurl,
+				contentType: 'application/x-www-form-urlencoded',
+				dataType: 'json',
+				//action: 'loginUserAfterLuminateLogin',
+				data: {
+					'action':'loginUserAfterLuminateLogin',
+					'username': username,
+					'token': token,
+					'cons_id':cons_id,
+					//'password': myPassword,
+					'email': email,
+					'login_test_url':login_test_url,
+					//'security': ajax_login_object.ajaxloginnonce,
+					'remember_me': remember_me
+				},
+				success: function (data) {
+					//console.log(JSON.stringify(data));
+					//alert("1");
+					setLuminateToken(token);
+					setLuminateConsId(cons_id);
+					if (redirectUrl!="" && redirectUrl!=undefined)
+					{
+						//alert("redirecting");
+						//document.location.href = ajax_login_object.redirecturl;
+					}
+					if (callback!=null)
+						callback(data);
+					return data;
+					jQuery('form#ajax_login p.status').text(JSON.stringify(data));
+//					document.location.href = ajax_login_object.redirecturl;
+					
+				},
+				error: function(errorThrown){
+					//alert("2");
+					console.log(errorThrown);
+				}				
+			});
+		},
+		error : function(data){
+			alert(data.responseJSON["errorResponse"]["message"]);
+
+		},		
+		statusCode: {
+		   403: function() { 
+				//alert(JSON.stringify(data));
+		   },
+		   200: function(data) {
+
+		   }
+		   //other codes. read the docs for more details
+		}			
+		
+	});	
+	
+}
+
+
+function loginToWPAfterLuminateLogin(cons_id, token, username, myPassword, email, remember_me, callback, redirectUrl)
+{
+	jQuery.ajax({
+		type: 'GET',
+		contentType: 'application/x-www-form-urlencoded',
+		dataType: 'json',
+		xhrFields: { withCredentials: true }, 
+		url: ajax_login_object.luminateurl+"CRConsAPI",
+		data: { 
+			'method': 'loginTest', 
+			'api_key': ajax_login_object.luminateAPIKey,
+			'v': '1.0', 
+			'response_format': 'json'
+		},
+		success: function(data){
+			console.log(data);
+			//return data;
+			var login_test_url=data.loginResponse.login_test_url;
+			
+			jQuery.ajax({
+				url: ajax_login_object.after_luminate_login_url,
+				contentType: 'application/x-www-form-urlencoded',
+				dataType: 'json',
+				//action: 'loginUserAfterLuminateLogin',
+				data: {
+					'action':'loginUserAfterLuminateLogin',
+					'username': username,
+					'token': token,
+					'cons_id':cons_id,
+					//'password': myPassword,
+					'email': email,
+					'login_test_url':login_test_url,
+					//'security': ajax_login_object.ajaxloginnonce,
+					'remember_me': remember_me
+				},
+				success: function (data) {
+					//console.log(JSON.stringify(data));
+					//alert("1");
+					setLuminateToken(token);
+					setLuminateConsId(cons_id);
+					if (redirectUrl!="" && redirectUrl!=undefined)
+					{
+						//alert("redirecting");
+						document.location.href = redirectUrl +"?loggedIn";
+					}
+					if (callback!=null)
+						callback(data);
+					return data;
+					jQuery('form#ajax_login p.status').text(JSON.stringify(data));
+//					document.location.href = ajax_login_object.redirecturl;
+					
+				},
+				error: function(errorThrown){
+					//alert("2");
+					console.log(errorThrown);
+				}				
+			});
+		},
+		error : function(data){
+			alert(data.responseJSON["errorResponse"]["message"]);
+
+		},		
+		statusCode: {
+		   403: function() { 
+				//alert(JSON.stringify(data));
+		   },
+		   200: function(data) {
+
+		   }
+		   //other codes. read the docs for more details
+		}			
+		
+	});	
+	
+}
+
+function loginhelp(hlp) {
+  document.getElementById('helppwd').style.display="none";
+  document.getElementById('helphint').style.display="none";
+  document.getElementById('helpuname').style.display="none";
+  hlpfrm="help"+hlp;
+  document.getElementById(hlpfrm).style.display="block";
+}
+function close2url(url) {
+  $.modal.close();
+  window.location = url;
+}
+
+
+jQuery(document).ready(function($) {
+	
+	
+    // Show the login dialog box on click
+    $('a#login_help').on('click', function(e){
+		$('<div id="login_overlay"></div>').insertBefore("#login_help_form");
+        $('#login_help_form').fadeIn(500);
+        $('div.login_overlay, #login_help_form a.close').on('click', function(e){
+            $('div#login_overlay').remove();
+            $('#login_help_form').hide();
+			e.preventDefault();
+        });
+        e.preventDefault();
+    });
+	
+    // Show the login dialog box on click
+    $('a#show_ajax_login_button').on('click', function(e){
+        $('<div id="login_overlay"></div>').insertBefore("form#ajax_login");
+        $('form#ajax_login').fadeIn(500);
+        $('div.login_overlay, form#ajax_login a.close').on('click', function(e){
+            $('div#login_overlay').remove();
+            $('form#ajax_login').hide();
+			e.preventDefault();
+        });
+        e.preventDefault();
+    });
+    // Show the login dialog box on click
+    $('a#show_form_login').on('click', function(e){
+        $('<div id="login_overlay"></div>').insertBefore("form#form_login'");
+        $('form#form_login').fadeIn(500);
+        $('div.login_overlay, form#form_login a.close').on('click', function(e){
+            $('div#login_overlay').remove();
+            $('form#form_login').hide();
+			e.preventDefault();
+        });
+        e.preventDefault();
+    });
+	
+    // Show the login dialog box on click
+    $('a#show_ajax_register_button').on('click', function(e){
+        $('<div id="login_overlay"></div>').insertBefore("form#ajax_register");
+        $('form#ajax_register').fadeIn(500);
+        $('div.login_overlay, form#ajax_register a.close').on('click', function(e){
+            $('div#login_overlay').remove();
+            $('form#ajax_register').hide();
+			e.preventDefault();
+        });
+        e.preventDefault();
+    });
+	
+
+    // Show the login dialog box on click
+    $('a#logout').on('click', function(e){
+		logout();
+		
+        e.preventDefault();
+    });
+	
+// Show the login dialog box on click
+    $('a#loginTest').on('click', function(e){
+
+		loginTest(true);
+        e.preventDefault();
+    });	
+	
+	
+    $('a#getUser').on('click', function(e){
+
+		getUser();
+        e.preventDefault();
+    });	
+	
+    $('a#getUserSR').on('click', function(e){
+
+		getUserSR();
+        e.preventDefault();
+    });	
+	
+	
+	
+	$('a#getLuminateToken').on('click', function(e){
+
+		alert("token="+getLuminateToken());
+		alert("cons_id="+getLuminatConsId());
+        e.preventDefault();
+    });	
+	
+	$('a#listUserFields').on('click', function(e){
+		listUserFields();
+        e.preventDefault();
+    });	
+	
+	
+	$('a#logInteraction').on('click', function(e){
+		logInteraction("Other", "Test Interaction2");
+		logInteraction("eCommerce Purchase", "Test Interaction eCommercePurchase");
+		
+        e.preventDefault();
+    });	
+	
+	$('a#getLoginUrl').on('click', function(e) {
+		
+		getLoginUrl();
+        e.preventDefault();
+		
+	});
+	
+    // Perform AJAX login on form submit
+    $('form#ajax_login').on('submit', function(e){
+
+        $('form#ajax_login p.status').show().text(ajax_login_object.loadingmessage);
+		var username=$('form#ajax_login #user_name').val();
+		var myPassword=$('form#ajax_login #password').val();
+		var remember_me=$('form#ajax_login #password').val();
+		var after_login_url=$('form#ajax_login').attr('data-after_login_url');
+
+        luminateLogin(username, myPassword, remember_me, after_login_url);
+        e.preventDefault();
+    });	
+		
+    // Perform AJAX register on form submit
+    $('form#ajax_register').on('submit', function(e){
+        e.preventDefault();
+        $('form#ajax_register p.status').show().text(ajax_register_object.loadingmessage);
+		var username=$('form#ajax_register #user_name').val();
+		var myPassword=$('form#ajax_register #password').val();
+		var first_name=$('form#ajax_register #first_name').val();
+		var last_name=$('form#ajax_register #last_name').val();
+		var email=$('form#ajax_register #email').val();
+		var after_login_url=$('form#ajax_login').attr('data-after_login_url');
+		var error="";
+		if (!isEmail(email))
+		{
+			error+="Invalid email.  ";
+		}
+		if (username.length<=0 || hasSpecialCharacters(username))
+		{
+			error+="Invalid user name.  ";
+		}		
+		if (first_name.length<=0 || hasSpecialCharacters(first_name))
+		{
+			error+="Invalid first name.  ";
+		}		
+		if (last_name.length<=0 || hasSpecialCharacters(last_name))
+		{
+			error+="Invalid last name.  ";
+		}	
+		if (myPassword.length<8)
+		{
+			error+="Password needs to be at least 8 characters.  ";			
+		}
+		if (error!=="")
+		{
+			$('form#ajax_register p.status').show().text(error);
+			return;
+		}
+		
+        createUser(username, myPassword, first_name, last_name, email, after_login_url);
+
+    });	
+
+
+});  
